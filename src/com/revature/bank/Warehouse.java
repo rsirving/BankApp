@@ -100,7 +100,7 @@ public class Warehouse implements Serializable {
 		accounts.remove(accountId);
 	}
 	
-	public void approveAccount(boolean judgement, int accountId) {
+	public void approveAccount(int judgement, int accountId) {
 		Account a = fetchAccount(accountId);
 		a.setApproval(judgement);
 	}

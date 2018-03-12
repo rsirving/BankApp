@@ -232,27 +232,27 @@ public class Main {
 	private static void accountApprove() {
 		System.out.println("Account applications awaiting approval: ");
 		for (Account a : accounts.values()) {
-			if (a.approval == null) {
+			if (a.approval == 0) {
 				System.out.print("\nAccount #: " + a.getAccountId() + ", Owner(s): ");
 				for (String o : a.getOwners()) {
 					System.out.print(o + " ");
 				}
 				System.out.println("\nApprove? (y/n)");
-				boolean judgement = false;
+				int judgement = 0;
 				String approval = scan.nextLine();
 				switch (approval) {			// This covers (most) possible responses to this question. 
 					case "y": case "Y": case "yes": case "Yes":
-						judgement = true;
+						judgement = 1;
 						break;
 					case "n": case "N": case "no": case "No":
-						judgement = false;
+						judgement = 2;
 						break;
 					default: 
 						System.out.println("Invalid response.");
 						accountApprove();
 				}
 				warehouse.approveAccount(judgement, a.getAccountId());
-				if (judgement == true) {
+				if (judgement == 1) {
 					log.info("Account #" + a.getAccountId() + " was approved by " + user.username + ".");					
 				} else {
 					log.info("Account #" + a.getAccountId() + " was declined by " + user.username + ".");					
@@ -281,7 +281,7 @@ public class Main {
 	private static void viewOwnedAccounts() {
 		// Shows all accounts owned by the current user.
 		for (Account a : user.ownedAccounts) {
-			if (a.approval == true) {
+			if (a.approval == 1) {
 				System.out.print("\nAccount #: " + a.getAccountId() + " Balance: $" + a.balance + " Owner(s): ");
 				for (String owner : a.getOwners()) {
 					System.out.print(owner + " ");
@@ -296,7 +296,7 @@ public class Main {
 		// Shows all accounts, with owner(s) and balance.
 		try {
 			for (Account a : accounts.values()) {
-				if (a.approval == true) {
+				if (a.approval == 1) {
 					System.out.print("\nAccount #: " + a.getAccountId() + " Balance: $" + a.balance + " Owner(s): " );
 					for (String owner : a.getOwners()) {
 						System.out.print(owner + " ");
@@ -356,7 +356,7 @@ public class Main {
 		// Given an account and a user, confirms that the user owns the account and the account is approved.
 		// If the user has employee permissions or higher, they own every account.
 		// This is a very bad bank.
-		if (a.getApproval() == true) {
+		if (a.getApproval() == 1) {
 			if (u.getPermissionLevel() > 0) {
 				return true;
 			}

@@ -1,0 +1,33 @@
+Create User:
+	INSERT INTO user VALUES ([userid], [username], [password], 0)
+Create Employee
+	INSERT INTO user VALUES ([userid], [username], [password], 1)
+Create Admin
+	INSERT INTO user VALUES ([userid], [username], [password], 2)
+Create Account
+	INSERT INTO account VALUES (accountid, 0, 0)
+	INSERT INTO user-account VALUES (userid, accountid)			repeat as necessary for joint account
+
+Approve Account
+	UPDATE account SET approval = 1 WHERE accountid = [id]
+Decline Account									// Same code can be used for deleting accounts?
+	DELETE account WHERE accountid = [id]		// Deletes the account from the account table.
+	DELETE user-account WHERE accountid = [id]	// Deletes the account from the relationships table.
+
+Withdraw
+	UPDATE account SET balance += [amount] WHERE accountid = [id]
+Deposit
+	UPDATE account SET balance -= [amount] WHERE accountid = [id]
+
+Fetch User
+	SELECT * FROM user WHERE userid = [id]
+Fetch User Permissions
+	SELECT permissionLevel FROM user WHERE userid = [id]
+
+Fetch accounts owned by user
+	SELECT acct.name, acct.balance  FROM account JOIN user-account ON (account.id = u-a.acctid) WHERE u-a.userid = [userid]
+
+Fetch User + accounts
+	SELECT * FROM user-account JOIN user ON (u-a.userid = user.userid) JOIN account ON (u-a.accountid = a.accountid)
+		// Find out how to get a set of unknown length from sql. And how to use it.
+
