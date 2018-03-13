@@ -60,6 +60,7 @@ public class AccountDaoImpl implements AccountDao {
 				ac.setBalance(rs.getInt(2));
 				ac.setApproval(rs.getInt(3));
 				ac_list.add(ac);
+				ac = new Account();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,6 +97,7 @@ public class AccountDaoImpl implements AccountDao {
 				ac.setBalance(rs.getInt(5));
 				ac.setApproval(rs.getInt(6));
 				ac_list.add(ac);
+				ac = new Account();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

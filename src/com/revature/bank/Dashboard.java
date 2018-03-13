@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import com.revature.dao.*;
 import com.revature.pojo.*;
-import com.revature.util.*;
 import com.revature.bank.Menu;
 
 public class Dashboard {
@@ -264,7 +263,6 @@ public class Dashboard {
 		ArrayList<String> owners = new ArrayList<String>();
 		accountList = adl.retrieveAllAccounts();
 		for (Account ac : accountList) {
-			System.out.println(ac.getApproval());
 			if (ac.getApproval() == 0) {
 				System.out.println(ac.toString());
 				owners = udl.getUsersOwningAccount(ac.getAccountId());
@@ -289,7 +287,7 @@ public class Dashboard {
 						break;
 				}
 				adl.updateAccount(ac);
-				System.out.println("Alright, here's the next one: ");
+				System.out.println("~~~---~~~---~~~---~~~---~~~---~~~---~~~---");
 			}
 		} 
 		System.out.println("That's the lot o' them.");
@@ -350,6 +348,7 @@ public class Dashboard {
 		System.out.println("Ah, be a shame ta see ye go.");
 		System.out.println("Come back soon, ye scurvy dog.");
 		currentUser = null;
-		// TODO Implement.
+		Driver d = new Driver();
+		d.landingBanner();
 	}
 }

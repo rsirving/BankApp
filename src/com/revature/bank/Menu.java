@@ -3,9 +3,7 @@ package com.revature.bank;
 import java.util.Scanner;
 
 public class Menu {
-	
-	// TODO I CALLED DIBS ON A PIRATE BANK
-	
+		
 	public static void mainMenuBanner() {
 		// sysout ascii art
 		System.out.println(" __        __  ___                       __   __   __                __             __   ___ \r\n" + 
@@ -31,8 +29,8 @@ public class Menu {
 		System.out.println("|1 | view yer treasure |");
 		System.out.println("|2 | ask fer a map     |");
 		System.out.println("|3 | pool yer treasure |");
-		System.out.println("|4 | bury treasure     |");
-		System.out.println("|5 | dig up yer booty  |");
+		System.out.println("|4 | dig up treasure   |");
+		System.out.println("|5 | bury treasure     |");
 		System.out.println("|6 | move yer booty    |");
 		if (permissionLevel > 0) {
 			System.out.println("|7 | grant maps        |");
